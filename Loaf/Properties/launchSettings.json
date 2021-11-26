@@ -1,0 +1,10 @@
+{
+  "profiles": {
+    "Loaf (Package)": {
+      "commandName": "MsixPackage"
+    },
+    "Loaf (Unpackaged)": {
+      "commandName": "Project"
+    }
+  }
+}
