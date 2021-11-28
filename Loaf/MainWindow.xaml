@@ -6,11 +6,7 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
    
     mc:Ignorable="d">
-
-    <StackPanel
-        HorizontalAlignment="Center"
-        VerticalAlignment="Center"
-        Orientation="Horizontal">
-        <Button x:Name="myButton" Click="myButton_Click">Click Me</Button>
-    </StackPanel>
+    <Grid  x:Name="Root"  >
+        <Frame x:Name="Frame"/>
+    </Grid>
 </Window>

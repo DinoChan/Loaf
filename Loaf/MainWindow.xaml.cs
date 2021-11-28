@@ -18,6 +18,7 @@ using Windows.Foundation.Collections;
 using Windows.UI.ViewManagement;
 using System.Windows.Input;
 using System.Runtime.InteropServices;
+using System.Diagnostics;
 // To learn more about WinUI, the WinUI project structure,
 // and more about our project templates, see: http://aka.ms/winui-project-info.
 
@@ -28,42 +29,83 @@ namespace Loaf
     /// </summary>
     public sealed partial class MainWindow : Window
     {
+        private bool _isLoafing;
+
         public MainWindow()
         {
             this.InitializeComponent();
+            Current = this;
+            Root.Loaded += OnLoaded;
+            Root.KeyDown += Root_KeyDown;
+            Activated += MainWindow_Activated;
         }
 
-        private void myButton_Click(object sender, RoutedEventArgs e)
+        private void MainWindow_Activated(object sender, WindowActivatedEventArgs args)
         {
-            myButton.Content = "Clicked";
-            var m_appWindow = GetAppWindowForCurrentWindow();
-            if (m_appWindow != null)
+            var control = Frame.Content as Page;
+            if (control != null && _isLoafing)
+                control.Focus(FocusState.Keyboard);
+        }
+
+        public static MainWindow Current { get; private set; }
+
+        private void Root_KeyDown(object sender, KeyRoutedEventArgs e)
+        {
+            if (_isLoafing && e.Key == Windows.System.VirtualKey.Escape)
             {
-                // You now have an AppWindow object and can call its methods to manipulate the window.
-                // Just to do something here, let's change the title of the window...
-                m_appWindow.Title = "WinUI ❤️ AppWindow";
+                Frame.GoBack();
+                _isLoafing = false;
+                _appWindow.SetPresenter(AppWindowPresenterKind.Default);
+                var parent = VisualTreeHelper.GetParent(Root);
+                while (parent != null)
+                {
+                    if (parent is FrameworkElement element)
+                    {
+                        element.IsHitTestVisible = true;
+                    }
+
+                    parent = VisualTreeHelper.GetParent(parent);
+                }
+                while (ShowCursor(true) < 0)
+                {
+                    ShowCursor(true); //显示光标
+                }
             }
-            //m_appWindow.SetPresenter(AppWindowPresenterKind.FullScreen);
-            //  FrameworkElementExtensions.SetCursor(sender as FrameworkElement, Microsoft.UI.Input.InputSystemCursorShape.AppStarting);
+        }
 
-            while (ShowCursor(true) < 0)
+        private void OnLoaded(object sender, RoutedEventArgs e)
+        {
+            Frame.Navigate(typeof(MainView));
+            _appWindow = GetAppWindowForCurrentWindow();
+            _appWindow.Title = "WinUI ❤️ Loaf";
+        }
 
+        private AppWindow _appWindow;
+
+        public void Loaf()
+        {
+            var parent = VisualTreeHelper.GetParent(Root);
+            while (parent != null)
             {
+                if (parent is FrameworkElement element)
+                {
+                    element.IsHitTestVisible = false;
+                }
 
+                parent = VisualTreeHelper.GetParent(parent);
+            }
+            Frame.Navigate(typeof(Windows11UpdateView));
+            _appWindow.SetPresenter(AppWindowPresenterKind.FullScreen);
+            while (ShowCursor(true) < 0)
+            {
                 ShowCursor(true); //显示光标
-
             }
             while (ShowCursor(false) >= 0)
-
             {
-
                 ShowCursor(false); //隐藏光标
-
             }
-            //var view = ApplicationView.GetForCurrentView();
-            //view.TryEnterFullScreenMode();
+            _isLoafing = true;
         }
-
 
         [DllImport("user32", EntryPoint = "ShowCursor")]
         public extern static int ShowCursor(bool show);
