@@ -46,7 +46,7 @@ namespace Loaf
 
         private void OnStartLoaf(TeachingTip sender, object args)
         {
-            MainWindow.Current.Loaf();
+            MainWindow.Instance.Loaf();
         }
 
         private async void OnRate(object sender, RoutedEventArgs e)

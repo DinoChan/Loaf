@@ -1,4 +1,7 @@
-﻿using Microsoft.UI.Xaml;
+﻿using Microsoft.AppCenter;
+using Microsoft.AppCenter.Analytics;
+using Microsoft.AppCenter.Crashes;
+using Microsoft.UI.Xaml;
 using Microsoft.UI.Xaml.Controls;
 using Microsoft.UI.Xaml.Controls.Primitives;
 using Microsoft.UI.Xaml.Data;
@@ -33,6 +36,8 @@ namespace Loaf
         public App()
         {
             this.InitializeComponent();
+            AppCenter.Start("c71080c8-ac9c-4246-8651-ccf786533b21",
+                   typeof(Analytics), typeof(Crashes));
         }
 
         /// <summary>

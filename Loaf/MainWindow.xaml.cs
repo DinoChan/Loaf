@@ -34,7 +34,7 @@ namespace Loaf
         public MainWindow()
         {
             this.InitializeComponent();
-            Current = this;
+            Instance = this;
             Root.Loaded += OnLoaded;
             Root.KeyDown += Root_KeyDown;
             Activated += MainWindow_Activated;
@@ -47,7 +47,7 @@ namespace Loaf
                 control.Focus(FocusState.Keyboard);
         }
 
-        public static MainWindow Current { get; private set; }
+        public static MainWindow Instance { get; private set; }
 
         private void Root_KeyDown(object sender, KeyRoutedEventArgs e)
         {
