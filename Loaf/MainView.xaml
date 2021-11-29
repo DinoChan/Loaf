@@ -2,42 +2,202 @@
     x:Class="Loaf.MainView"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-    xmlns:local="using:Loaf" xmlns:ui="using:CommunityToolkit.WinUI.UI"
-  xmlns:media="using:CommunityToolkit.WinUI.UI.Media"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:local="using:Loaf"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:media="using:CommunityToolkit.WinUI.UI.Media"
+    xmlns:ui="using:CommunityToolkit.WinUI.UI"
     mc:Ignorable="d">
 
 
     <Grid>
         <Grid.Resources>
-            <media:AttachedCardShadow x:Key="CommonShadow" Offset="0" CornerRadius="0" Color="#FF80C85E" BlurRadius="40"/>
+            <media:AttachedCardShadow
+                x:Key="CommonShadow"
+                BlurRadius="40"
+                CornerRadius="0"
+                Offset="0"
+                Color="#FF80C85E" />
+            <Style x:Key="TipsNumberStyle" TargetType="TextBlock">
+                <Setter Property="Foreground" Value="#66D91153" />
+                <Setter Property="FontSize" Value="40" />
+                <Setter Property="VerticalAlignment" Value="Top" />
+                <Setter Property="Width" Value="36" />
+                <Setter Property="Opacity" Value="0" />
+            </Style>
+            <Style x:Key="TipsContentStyle" TargetType="TextBlock">
+                <Setter Property="Foreground" Value="#EEFFFFFF" />
+                <Setter Property="FontSize" Value="20" />
+                <Setter Property="Margin" Value="0,12,0,0" />
+                <Setter Property="VerticalAlignment" Value="Top" />
+                <Setter Property="TextWrapping" Value="Wrap" />
+            </Style>
         </Grid.Resources>
         <Grid.Background>
-            <LinearGradientBrush EndPoint="1,1" StartPoint="0,0" SpreadMethod="Pad" MappingMode="RelativeToBoundingBox">
+            <LinearGradientBrush MappingMode="RelativeToBoundingBox" SpreadMethod="Pad" StartPoint="0,0" EndPoint="1,1">
                 <LinearGradientBrush.RelativeTransform>
-                    <CompositeTransform CenterY="0.5" CenterX="0.5" Rotation="15.945"/>
+                    <CompositeTransform
+                        CenterX="0.5"
+                        CenterY="0.5"
+                        Rotation="15.945" />
                 </LinearGradientBrush.RelativeTransform>
-                <GradientStop Color="#FF9CD3FA"/>
-                <GradientStop Color="#FF9CD3FA" Offset="0.1"/>
-                <GradientStop Color="#FF484A9F" Offset="0.1"/>
-                <GradientStop Color="#FF484A9F" Offset="0.2"/>
-                <GradientStop Color="#FF848AE2" Offset="0.2"/>
-                <GradientStop Color="#FF848AE2" Offset="0.3"/>
-                <GradientStop Color="#FF515572" Offset="0.3"/>
-                <GradientStop Color="#FF515572" Offset="1"/>
+                <GradientStop Color="#FF92CAED" />
+                <GradientStop Offset="0.1" Color="#FF92CAED" />
+                <GradientStop Offset="0.1" Color="#FF484A9F" />
+                <GradientStop Offset="0.2" Color="#FF484A9F" />
+                <GradientStop Offset="0.2" Color="#FF848AE2" />
+                <GradientStop Offset="0.3" Color="#FF848AE2" />
+                <GradientStop Offset="0.3" Color="#FF515572" />
+                <GradientStop Offset="1" Color="#FF515572" />
             </LinearGradientBrush>
         </Grid.Background>
-        <Border CornerRadius="16" Background="#1a202d" Margin="30" >
-            <Button Content="Loaf" Foreground="White"  Width="300" BorderThickness="3" FontSize="48" HorizontalAlignment="Right" VerticalAlignment="Top" Margin="100"
-                     ui:Effects.Shadow="{StaticResource CommonShadow}"  Click="OnLoaf" CornerRadius="0">
-                <Button.BorderBrush>
-                    <LinearGradientBrush EndPoint="1,0.5" StartPoint="0.1,0.5">
-                        <GradientStop Color="#26b5bf"/>
-                        <GradientStop Color="#FF80C85E" Offset="1"/>
-                    </LinearGradientBrush>
-                </Button.BorderBrush>
-            </Button>
+        <Border
+            Margin="30"
+            HorizontalAlignment="Center"
+            VerticalAlignment="Center"
+            Background="#1a202d"
+            CornerRadius="16">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto" />
+                    <ColumnDefinition />
+                </Grid.ColumnDefinitions>
+                <Grid Margin="30,30,10,30">
+                    <Button
+                        Width="300"
+                       x:Name="LoafButton"
+                        HorizontalAlignment="Right"
+                        VerticalAlignment="Top"
+                        ui:Effects.Shadow="{StaticResource CommonShadow}"
+                        BorderThickness="3"
+                        Click="OnLoaf"
+                        Content="Loaf"
+                        CornerRadius="0"
+                        FontSize="48"
+                        Foreground="White">
+                        <Button.BorderBrush>
+                            <LinearGradientBrush StartPoint="0.1,0.5" EndPoint="1,0.5">
+                                <GradientStop Color="#26b5bf" />
+                                <GradientStop Offset="1" Color="#FF80C85E" />
+                            </LinearGradientBrush>
+                        </Button.BorderBrush>
+                    </Button>
+                    <TeachingTip x:Name="LoafTeachingTip" IsLightDismissEnabled="True" 
+ Content="即将进入全屏，可以按 Esc 键退出。" PreferredPlacement="Bottom" Title="请注意！" CloseButtonContent="开始摸鱼" CloseButtonClick="OnStartLoaf" Target="{x:Bind LoafButton}"
+/>
+                    <StackPanel VerticalAlignment="Bottom">
+                        <TextBlock
+                            x:Uid="AppNameTextBlock"
+                            Style="{ThemeResource BodyTextBlockStyle}"
+                            Text="Loaf - a WinUi 3 app" />
+
+                        <TextBlock
+                            Margin="0,4,0,0"
+                            Style="{ThemeResource BodyTextBlockStyle}"
+                            Text="Designed and Developed by dino.c" />
+
+                        <StackPanel Orientation="Horizontal">
+                            <TextBlock
+                                Margin="0,4,0,0"
+                                Foreground="Gray"
+                                Style="{ThemeResource BodyTextBlockStyle}"
+                                Text="© 2021 dino.c" />
+                            <TextBlock
+                                Margin="16,4,0,0"
+                                Foreground="Gray"
+                                Style="{ThemeResource BodyTextBlockStyle}"
+                                Text="version - " />
+                            <TextBlock
+                                Margin="0,4,0,0"
+                                Foreground="Gray"
+                                Style="{ThemeResource BodyTextBlockStyle}"
+                                Text="1.0" 
+                                x:Name="VersionElement"/>
+                        </StackPanel>
+
+                        <StackPanel Margin="0,4,0,0" Orientation="Horizontal">
+                            <HyperlinkButton
+                                Padding="0"
+                                Content="GitHub"
+                                NavigateUri="https://github.com/DinoChan/Loaf" />
+                            <HyperlinkButton
+                                x:Uid="Rate_Link"
+                                Click="OnRate"
+                                Margin="8,0,0,0"
+                                Padding="0"
+                                Content="Rate this app" />
+                            <!--<HyperlinkButton Margin="8,0,0,0"
+                                         Padding="0"
+                                         x:Uid="FeedbackHub_Link"
+                                         Content="Feedback"
+                                         Command="{x:Bind ViewModel.LaunchFeedbackHubCommand}"
+                                         Visibility="{x:Bind ViewModel.FeedbackLinkVisibility}" />-->
+                        </StackPanel>
+                    </StackPanel>
+                </Grid>
+                <Grid Grid.Column="1" Margin="10,30,30,30">
+                    <StackPanel>
+
+                        <StackPanel Margin="0,-10,0,0" Orientation="Horizontal">
+                            <TextBlock
+                                Opacity="0"
+                                Style="{StaticResource TipsNumberStyle}"
+                                Text="1" />
+                            <TextBlock
+                                FontSize="40"
+                                Foreground="#FF92CAED"
+                                Style="{ThemeResource SubtitleTextBlockStyle}">
+                                <Run>这是一个</Run>
+                                <Run FontWeight="Bold">摸鱼</Run>
+                                <Run>应用</Run>
+                            </TextBlock>
+                        </StackPanel>
+
+                        <StackPanel Margin="0,10,0,0" Orientation="Horizontal">
+                            <TextBlock Style="{StaticResource TipsNumberStyle}" Text="1" />
+                            <TextBlock Style="{StaticResource TipsContentStyle}" Text="其实这是一个玩笑。" />
+                        </StackPanel>
+                        <StackPanel Orientation="Horizontal">
+                            <TextBlock Style="{StaticResource TipsNumberStyle}" Text="2" />
+                            <TextBlock Style="{StaticResource TipsContentStyle}">
+                                <Run>点击</Run>
+                                <Run FontWeight="Bold">摸鱼</Run>
+                                <Run>按钮后应用会显示一个 Windows Update 画面，让你的老板以为你的电脑正在升级。</Run>
+                            </TextBlock>
+                        </StackPanel>
+                        <StackPanel Orientation="Horizontal">
+                            <TextBlock Style="{StaticResource TipsNumberStyle}" Text="3" />
+                            <TextBlock Style="{StaticResource TipsContentStyle}" Text="这时候你就可以休息一下，优雅地喝一杯咖啡。" />
+                        </StackPanel>
+                        <StackPanel Orientation="Horizontal">
+                            <TextBlock Style="{StaticResource TipsNumberStyle}" Text="4" />
+                            <TextBlock Style="{StaticResource TipsContentStyle}" Text="不要有内疚感，适当的休息可以让你的大脑重新充满活力，能面对更多挑战，更高效地完成工作。" />
+                        </StackPanel>
+                        <StackPanel Orientation="Horizontal">
+                            <TextBlock Style="{StaticResource TipsNumberStyle}" Text="5" />
+                            <TextBlock Style="{StaticResource TipsContentStyle}">
+                                所以放心大胆地使用<Run FontWeight="Bold">摸鱼</Run>
+                                吧。</TextBlock>
+                        </StackPanel>
+
+                        <StackPanel Margin="0,40,0,0" Orientation="Horizontal">
+                            <TextBlock Style="{StaticResource TipsNumberStyle}" Text="6" />
+                            <StackPanel>
+                                <TextBlock>已知问题 1：不能应付多屏幕。</TextBlock>
+                                <TextBlock Text="解决方法：关闭多余的显示器，让它们也休息一下。" />
+                                <TextBlock>已知问题 2：不能隐藏鼠标指针。</TextBlock>
+                                <TextBlock Text="解决方法：将鼠标移动到屏幕的右边或下面，躲起来。" />
+                            </StackPanel>
+                        </StackPanel>
+
+
+
+
+
+                    </StackPanel>
+
+                </Grid>
+            </Grid>
         </Border>
     </Grid>
 </Page>

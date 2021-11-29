@@ -246,7 +246,7 @@
                 </TextBlock>
                 <TextBlock Text="请保持计算机打开状态。"/>
             </StackPanel>
-            <TextBlock Margin="0,0,0,134" VerticalAlignment="Bottom" Text="计算机可能会重启几次"/>
+            <TextBlock Margin="0,0,0,104" VerticalAlignment="Bottom" Text="计算机可能会重启几次"/>
         </Grid>
         <Button x:Name="EscButton" HorizontalAlignment="Left" VerticalAlignment="Top" Opacity="0"/>
     </Grid>
