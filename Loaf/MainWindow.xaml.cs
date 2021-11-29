@@ -77,6 +77,7 @@ namespace Loaf
         {
             Frame.Navigate(typeof(MainView));
             _appWindow = GetAppWindowForCurrentWindow();
+
             _appWindow.Title = "WinUI ❤️ Loaf";
         }
 

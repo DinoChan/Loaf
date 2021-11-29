@@ -6,7 +6,8 @@
     xmlns:local="using:Loaf"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:media="using:CommunityToolkit.WinUI.UI.Media"
-    xmlns:ui="using:CommunityToolkit.WinUI.UI"
+    xmlns:ani="using:CommunityToolkit.WinUI.UI.Animations"
+    xmlns:ui="using:CommunityToolkit.WinUI.UI" xmlns:interactivity="using:Microsoft.Xaml.Interactivity" xmlns:interactions="using:Microsoft.Xaml.Interactions.Core" xmlns:behaviors="using:CommunityToolkit.WinUI.UI.Behaviors"
     mc:Ignorable="d">
 
 
@@ -18,6 +19,7 @@
                 CornerRadius="0"
                 Offset="0"
                 Color="#FF80C85E" />
+           
             <Style x:Key="TipsNumberStyle" TargetType="TextBlock">
                 <Setter Property="Foreground" Value="#66D91153" />
                 <Setter Property="FontSize" Value="40" />
@@ -32,6 +34,7 @@
                 <Setter Property="VerticalAlignment" Value="Top" />
                 <Setter Property="TextWrapping" Value="Wrap" />
             </Style>
+         
         </Grid.Resources>
         <Grid.Background>
             <LinearGradientBrush MappingMode="RelativeToBoundingBox" SpreadMethod="Pad" StartPoint="0,0" EndPoint="1,1">
