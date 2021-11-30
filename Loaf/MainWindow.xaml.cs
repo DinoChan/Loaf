@@ -19,6 +19,7 @@ using Windows.UI.ViewManagement;
 using System.Windows.Input;
 using System.Runtime.InteropServices;
 using System.Diagnostics;
+using System.Threading;
 // To learn more about WinUI, the WinUI project structure,
 // and more about our project templates, see: http://aka.ms/winui-project-info.
 
@@ -78,13 +79,14 @@ namespace Loaf
             Frame.Navigate(typeof(MainView));
             _appWindow = GetAppWindowForCurrentWindow();
 
-            _appWindow.Title = "WinUI ❤️ Loaf";
+            _appWindow.Title = "WinUI ❤️ "+ResourceExtensions.GetLocalized("Loaf");
         }
 
         private AppWindow _appWindow;
 
         public void Loaf()
         {
+            RestoreWindow();
             var parent = VisualTreeHelper.GetParent(Root);
             while (parent != null)
             {
@@ -96,6 +98,7 @@ namespace Loaf
                 parent = VisualTreeHelper.GetParent(parent);
             }
             Frame.Navigate(typeof(Windows11UpdateView));
+            
             _appWindow.SetPresenter(AppWindowPresenterKind.FullScreen);
             while (ShowCursor(true) < 0)
             {
@@ -111,11 +114,20 @@ namespace Loaf
         [DllImport("user32", EntryPoint = "ShowCursor")]
         public extern static int ShowCursor(bool show);
 
+        [DllImport("user32.dll", EntryPoint = "ShowWindow")]
+        public static extern int ShowWindow(IntPtr hwnd, int nCmdShow);
+
         private AppWindow GetAppWindowForCurrentWindow()
         {
             IntPtr hWnd = WinRT.Interop.WindowNative.GetWindowHandle(this);
             WindowId myWndId = Microsoft.UI.Win32Interop.GetWindowIdFromWindow(hWnd);
             return AppWindow.GetFromWindowId(myWndId);
+        }
+
+        private void RestoreWindow()
+        {
+            IntPtr hWnd = WinRT.Interop.WindowNative.GetWindowHandle(this);
+            ShowWindow(hWnd, 9);
         }
     }
 }

@@ -19,7 +19,7 @@ using Windows.Foundation.Collections;
 
 namespace Loaf
 {
-    public sealed partial class Windows11UpdateView 
+    public sealed partial class Windows11UpdateView
     {
         private bool _disposed = false;
 
@@ -30,7 +30,7 @@ namespace Loaf
             Unloaded += Windows11UpdateView_Unloaded;
             this.KeyDown += Windows11UpdateView_KeyDown;
             this.PointerReleased += Windows11UpdateView_PointerReleased;
-            
+
         }
 
         private void Windows11UpdateView_PointerReleased(object sender, PointerRoutedEventArgs e)
@@ -40,12 +40,12 @@ namespace Loaf
 
         private void Windows11UpdateView_PointerPressed(object sender, PointerRoutedEventArgs e)
         {
-           
+
         }
 
         private void Windows11UpdateView_KeyDown(object sender, KeyRoutedEventArgs e)
         {
-           
+
         }
 
         private void Windows11UpdateView_Unloaded(object sender, RoutedEventArgs e)
@@ -58,8 +58,8 @@ namespace Loaf
             int index = 0;
             while (_disposed == false)
             {
+                UpdatingElement.Text = String.Format(ResourceExtensions.GetLocalized("UpdatingText"), index++);
                 await Task.Delay(TimeSpan.FromSeconds(10));
-                Ru.Text = (index++ % 100) + "%";
             }
         }
     }
