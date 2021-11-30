@@ -174,14 +174,14 @@
   <data name="Tips4Run.Text" xml:space="preserve">
     <value>不要有内疚感，适当的休息可以让你的大脑重新充满活力，能面对更多挑战，更高效地完成工作。</value>
   </data>
-  <data name="Tips5Par3.Text" xml:space="preserve">
-    <value>吧。</value>
-  </data>
   <data name="Tips5Part1.Text" xml:space="preserve">
     <value>所以放心大胆地使用</value>
   </data>
   <data name="Tips5Part2.Text" xml:space="preserve">
     <value>摸鱼</value>
+  </data>
+  <data name="Tips5Part3.Text" xml:space="preserve">
+    <value>吧。</value>
   </data>
   <data name="UpdatingHint.Text" xml:space="preserve">
     <value>请保持计算机打开状态。</value>
