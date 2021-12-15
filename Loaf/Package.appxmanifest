@@ -10,7 +10,7 @@
   <Identity
     Name="24329C-Soft.Loaf-aWinUI3App"
     Publisher="CN=6D7AEB3B-3956-49A6-AD32-C4737FDDCD52"
-    Version="1.0.8.0" />
+    Version="1.0.9.0" />
 
   <Properties>
     <DisplayName>Loaf - a WinUI3 App</DisplayName>
