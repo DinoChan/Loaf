@@ -55,6 +55,7 @@ namespace Loaf
 
         private async void Windows11UpdateView_Loaded(object sender, RoutedEventArgs e)
         {
+            (Application.Current.Resources["GridColorSolidBrush"] as SolidColorBrush).Color = new Windows.UI.ViewManagement.UISettings().GetColorValue(Windows.UI.ViewManagement.UIColorType.Accent);
             int index = 0;
             while (_disposed == false)
             {

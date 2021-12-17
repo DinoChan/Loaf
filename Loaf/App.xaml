@@ -10,6 +10,7 @@
                 <!-- Other merged dictionaries here -->
             </ResourceDictionary.MergedDictionaries>
             <!-- Other app resources here -->
+            <SolidColorBrush x:Key="GridColorSolidBrush" Color="Black" />
         </ResourceDictionary>
     </Application.Resources>
 </Application>
