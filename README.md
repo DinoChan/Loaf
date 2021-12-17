@@ -1,8 +1,8 @@
 # Loaf
 
-![](https://github.com/DinoChan/Loaf/blob/master/c3.png?raw=true)
+![](https://github.com/DinoChan/Loaf/blob/master/C3.png?raw=true)
 
-![](https://github.com/DinoChan/Loaf/blob/master/c4.png?raw=true)
+![](https://github.com/DinoChan/Loaf/blob/master/C4.png?raw=true)
 
 
 因为 Windows App SDK 的 1.0 版本发布了，所以使用它制作了这个小应用。如上图所示，这个 App 就只有一个按钮，点击后假装开始 Windows Update，然后用户就可以光明正大地摸鱼了。
