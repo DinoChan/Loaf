@@ -58,7 +58,7 @@ namespace Loaf
             int index = 0;
             while (_disposed == false)
             {
-                UpdatingElement.Text = String.Format(ResourceExtensions.GetLocalized("UpdatingText"), (index++) % 100);
+                UpdatingElement.Text = String.Format(ResourceExtensions.GetLocalized("UpdatingText"), Math.Min(98, index++));
                 await Task.Delay(TimeSpan.FromSeconds(10));
             }
         }
