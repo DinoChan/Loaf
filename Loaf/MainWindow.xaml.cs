@@ -41,22 +41,7 @@ namespace Loaf
             if (_isLoafing && e.Key == Windows.System.VirtualKey.Escape)
             {
                 Frame.GoBack();
-                _isLoafing = false;
-                _appWindow.SetPresenter(AppWindowPresenterKind.Default);
-                var parent = VisualTreeHelper.GetParent(Root);
-                while (parent != null)
-                {
-                    if (parent is FrameworkElement element)
-                    {
-                        element.IsHitTestVisible = true;
-                    }
-
-                    parent = VisualTreeHelper.GetParent(parent);
-                }
-                while (ShowCursor(true) < 0)
-                {
-                    ShowCursor(true); //显示光标
-                }
+                Unload();
             }
         }
 
@@ -94,7 +79,31 @@ namespace Loaf
             {
                 ShowCursor(false); //隐藏光标
             }
+            // 阻止系统睡眠，阻止屏幕关闭。
+            SystemSleep.PreventForCurrentThread();
             _isLoafing = true;
+        }
+
+        public void Unload()
+        {
+            _isLoafing = false;
+            _appWindow.SetPresenter(AppWindowPresenterKind.Default);
+            var parent = VisualTreeHelper.GetParent(Root); 
+            while (parent != null)
+            {
+                if (parent is FrameworkElement element)
+                {
+                    element.IsHitTestVisible = true;
+                }
+
+                parent = VisualTreeHelper.GetParent(parent);
+            }
+            while (ShowCursor(true) < 0)
+            {
+                ShowCursor(true); //显示光标
+            }
+            // 恢复此线程曾经阻止的系统休眠和屏幕关闭。
+            SystemSleep.RestoreForCurrentThread();
         }
 
         [DllImport("user32", EntryPoint = "ShowCursor")]
