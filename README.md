@@ -15,6 +15,9 @@
 
 [用 WinUI 3 开发了一个摸鱼应用](https://www.cnblogs.com/dino623/p/developing_an_app_with_winui3.html)
 
+而且，摸鱼可以提高工作效率是有科学根据的：
+
+[研究证明，爱迪生、达利是对的，清醒和睡眠之间状态是解决问题最佳时机](https://new.qq.com/omn/20211210/20211210A0BI1E00.html)
 
 ## 关于 WinUI 3
 
