@@ -184,7 +184,7 @@
     <value>app.</value>
   </data>
   <data name="UpdatingHint.Text" xml:space="preserve">
-    <value>Don't turn of your computer</value>
+    <value>Don't turn off your computer</value>
   </data>
   <data name="UpdatingText" xml:space="preserve">
     <value>Working on updates {0}% complete.</value>
