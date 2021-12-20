@@ -20,8 +20,8 @@ namespace Loaf
         private bool _isLoafing;
         private WinProc _newWndProc = null;
         private IntPtr _oldWndProc = IntPtr.Zero;
-        private const int MIN_WINDOW_WIDTH = 1000;
-        private const int MIN_WINDOW_HEIGHT = 680;
+        private const int MIN_WINDOW_WIDTH = 612;
+        private const int MIN_WINDOW_HEIGHT = 740;
 
         public MainWindow()
         {
@@ -53,10 +53,8 @@ namespace Loaf
 
         private void OnLoaded(object sender, RoutedEventArgs e)
         {
-            Frame.Navigate(typeof(MainView));
+            Frame.Navigate(typeof(HomeView));
             _appWindow = GetAppWindowForCurrentWindow();
-
-            _appWindow.Title = "WinUI ❤️ " + ResourceExtensions.GetLocalized("Loaf");
         }
 
         private AppWindow _appWindow;
@@ -65,6 +63,7 @@ namespace Loaf
         public void Loaf()
         {
             RestoreWindow();
+            AppTitleBar.Visibility = Visibility.Collapsed;
             var parent = VisualTreeHelper.GetParent(Root);
             while (parent != null)
             {
@@ -94,6 +93,7 @@ namespace Loaf
         public void Unload()
         {
             _isLoafing = false;
+            AppTitleBar.Visibility = Visibility.Visible;
             _appWindow.SetPresenter(AppWindowPresenterKind.Default);
             var parent = VisualTreeHelper.GetParent(Root);
             while (parent != null)
@@ -166,6 +166,14 @@ namespace Loaf
         {
             var dpi = PInvoke.User32.GetDpiForWindow(windowHandle);
             return Convert.ToInt32(pixel * (dpi / 96.0));
+        }
+
+        private void OnBackButtonClick(object sender, EventArgs e)
+        {
+            if (Frame.CanGoBack)
+            {
+                Frame.GoBack();
+            }
         }
     }
 }
