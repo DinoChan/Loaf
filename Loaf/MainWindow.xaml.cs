@@ -28,6 +28,7 @@ namespace Loaf
             Instance = this;
             Root.Loaded += OnLoaded;
             Root.KeyDown += Root_KeyDown;
+            Root.ActualThemeChanged += OnThemeChanged;
             Activated += MainWindow_Activated;
         }
 
@@ -54,6 +55,9 @@ namespace Loaf
             Frame.Navigate(typeof(HomeView));
             _appWindow = GetAppWindowForCurrentWindow();
         }
+
+        private void OnThemeChanged(FrameworkElement sender, object args)
+            => AppUtils.InitializeTitleBar(_appWindow.TitleBar);
 
         private AppWindow _appWindow;
         private delegate IntPtr WinProc(IntPtr hWnd, PInvoke.User32.WindowMessage msg, IntPtr wParam, IntPtr lParam);

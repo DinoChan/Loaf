@@ -10,6 +10,11 @@ namespace Loaf
     {
         public static void InitializeTitleBar(AppWindowTitleBar titleBar)
         {
+            if(titleBar == null)
+            {
+                return;
+            }
+
             titleBar.ExtendsContentIntoTitleBar = true;
             if (App.Current.RequestedTheme == ApplicationTheme.Light)
             {
