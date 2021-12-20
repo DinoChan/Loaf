@@ -155,23 +155,11 @@
   <data name="Loaf" xml:space="preserve">
     <value>摸鱼</value>
   </data>
-  <data name="LoafButton.Content" xml:space="preserve">
-    <value>摸鱼</value>
-  </data>
   <data name="LoafElement.Text" xml:space="preserve">
     <value>摸鱼</value>
   </data>
   <data name="LoafingTipBlock.Text" xml:space="preserve">
     <value>点击进入全屏，可以按 Esc 键退出</value>
-  </data>
-  <data name="LoafTeachingTip.CloseButtonContent" xml:space="preserve">
-    <value>开始摸鱼</value>
-  </data>
-  <data name="LoafTeachingTip.Content" xml:space="preserve">
-    <value>即将进入全屏，可以按 Esc 键退出。</value>
-  </data>
-  <data name="LoafTeachingTip.Title" xml:space="preserve">
-    <value>请注意</value>
   </data>
   <data name="RestartHint.Text" xml:space="preserve">
     <value>计算机可能会重启几次</value>
@@ -184,36 +172,6 @@
   </data>
   <data name="StartLoafingButton.Content" xml:space="preserve">
     <value>开始摸鱼</value>
-  </data>
-  <data name="ThisIsA.Text" xml:space="preserve">
-    <value>这是一个</value>
-  </data>
-  <data name="Tips1Run.Text" xml:space="preserve">
-    <value>其实这是一个玩笑。</value>
-  </data>
-  <data name="Tips2Part1.Text" xml:space="preserve">
-    <value>点击</value>
-  </data>
-  <data name="Tips2Part2.Text" xml:space="preserve">
-    <value>摸鱼</value>
-  </data>
-  <data name="Tips2Part3.Text" xml:space="preserve">
-    <value>按钮后应用会显示一个 Windows Update 画面，让你的老板以为你的电脑正在升级。</value>
-  </data>
-  <data name="Tips3Run.Text" xml:space="preserve">
-    <value>这时候你就可以休息一下，优雅地喝一杯咖啡。</value>
-  </data>
-  <data name="Tips4Run.Text" xml:space="preserve">
-    <value>不要有内疚感，适当的休息可以让你的大脑重新充满活力，能面对更多挑战，更高效地完成工作。</value>
-  </data>
-  <data name="Tips5Part1.Text" xml:space="preserve">
-    <value>所以放心大胆地使用</value>
-  </data>
-  <data name="Tips5Part2.Text" xml:space="preserve">
-    <value>摸鱼</value>
-  </data>
-  <data name="Tips5Part3.Text" xml:space="preserve">
-    <value>吧。</value>
   </data>
   <data name="UpdatingHint.Text" xml:space="preserve">
     <value>请保持计算机打开状态。</value>
