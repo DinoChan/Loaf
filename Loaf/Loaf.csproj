@@ -52,6 +52,7 @@
     <PackageReference Include="Microsoft.AppCenter.Crashes" Version="4.4.0" />
     <PackageReference Include="Microsoft.WindowsAppSDK" Version="1.0.0" />
     <PackageReference Include="Microsoft.Windows.SDK.BuildTools" Version="10.0.22000.196" />
+    <PackageReference Include="PInvoke.User32" Version="0.7.104" />
     <Manifest Include="$(ApplicationManifest)" />
   </ItemGroup>
 
