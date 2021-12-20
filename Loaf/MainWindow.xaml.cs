@@ -7,8 +7,6 @@ using Microsoft.UI.Xaml.Media;
 using System;
 using System.Runtime.InteropServices;
 using WinRT.Interop;
-// To learn more about WinUI, the WinUI project structure,
-// and more about our project templates, see: http://aka.ms/winui-project-info.
 
 namespace Loaf
 {
@@ -152,20 +150,14 @@ namespace Loaf
                 case PInvoke.User32.WindowMessage.WM_GETMINMAXINFO:
                     {
                         var minMaxInfo = Marshal.PtrToStructure<PInvoke.User32.MINMAXINFO>(lParam);
-                        minMaxInfo.ptMinTrackSize.x = GetActualPixel(MIN_WINDOW_WIDTH, hWnd);
-                        minMaxInfo.ptMinTrackSize.y = GetActualPixel(MIN_WINDOW_HEIGHT, hWnd);
+                        minMaxInfo.ptMinTrackSize.x = AppUtils.GetScalePixel(MIN_WINDOW_WIDTH, hWnd);
+                        minMaxInfo.ptMinTrackSize.y = AppUtils.GetScalePixel(MIN_WINDOW_HEIGHT, hWnd);
                         Marshal.StructureToPtr(minMaxInfo, lParam, true);
                         break;
                     }
             }
 
             return CallWindowProc(_oldWndProc, hWnd, msg, wParam, lParam);
-        }
-
-        private static int GetActualPixel(double pixel, IntPtr windowHandle)
-        {
-            var dpi = PInvoke.User32.GetDpiForWindow(windowHandle);
-            return Convert.ToInt32(pixel * (dpi / 96.0));
         }
 
         private void OnBackButtonClick(object sender, EventArgs e)
