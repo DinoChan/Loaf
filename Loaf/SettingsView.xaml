@@ -1,0 +1,91 @@
+﻿<Page
+    x:Class="Loaf.SettingsView"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:local="using:Loaf"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d">
+
+    <Grid Padding="0,0,0,12">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*" />
+            <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
+        <ScrollViewer HorizontalScrollMode="Disabled" VerticalScrollBarVisibility="Auto">
+            <Grid Padding="28,12" RowSpacing="12">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                </Grid.RowDefinitions>
+                <TextBlock
+                    x:Uid="AboutTitleBlock"
+                    HorizontalAlignment="Left"
+                    Style="{StaticResource SubtitleTextBlockStyle}" />
+                <StackPanel Grid.Row="1" HorizontalAlignment="Stretch">
+                    <Expander
+                        Padding="48,12,48,16"
+                        HorizontalAlignment="Stretch"
+                        HorizontalContentAlignment="Stretch">
+                        <Expander.Header>
+                            <StackPanel
+                                Margin="0,12,0,14"
+                                Orientation="Horizontal"
+                                Spacing="16">
+                                <FontIcon
+                                    VerticalAlignment="Center"
+                                    FontFamily="{StaticResource SymbolThemeFontFamily}"
+                                    FontSize="16"
+                                    Glyph="&#xE946;" />
+                                <StackPanel VerticalAlignment="Center" Spacing="2">
+                                    <TextBlock
+                                        x:Uid="KnowsIssueTitle"
+                                        HorizontalAlignment="Left"
+                                        Style="{StaticResource BodyTextBlockStyle}" />
+                                    <TextBlock
+                                        x:Uid="KnownIssueDescription"
+                                        HorizontalAlignment="Left"
+                                        Foreground="{ThemeResource TextFillColorSecondaryBrush}"
+                                        MaxLines="2"
+                                        Style="{StaticResource CaptionTextBlockStyle}"
+                                        TextWrapping="Wrap" />
+                                </StackPanel>
+                            </StackPanel>
+                        </Expander.Header>
+                        <Expander.Content>
+                            <StackPanel Spacing="16">
+                                <StackPanel HorizontalAlignment="Left" Spacing="4">
+                                    <TextBlock
+                                        x:Uid="IssuesLine1"
+                                        HorizontalAlignment="Left"
+                                        FontWeight="Bold" />
+                                    <TextBlock
+                                        x:Uid="IssuesLine2"
+                                        Foreground="{ThemeResource TextFillColorSecondaryBrush}"
+                                        TextWrapping="Wrap" />
+                                </StackPanel>
+                                <StackPanel HorizontalAlignment="Left" Spacing="4">
+                                    <TextBlock
+                                        x:Uid="IssuesLine3"
+                                        HorizontalAlignment="Left"
+                                        FontWeight="Bold" />
+                                    <TextBlock
+                                        x:Uid="IssuesLine4"
+                                        Foreground="{ThemeResource TextFillColorSecondaryBrush}"
+                                        TextWrapping="Wrap" />
+                                </StackPanel>
+                            </StackPanel>
+                        </Expander.Content>
+                    </Expander>
+                </StackPanel>
+            </Grid>
+        </ScrollViewer>
+        <TextBlock
+            x:Name="CopyRightsBlock"
+            Grid.Row="1"
+            HorizontalAlignment="Center"
+            Foreground="{ThemeResource TextFillColorSecondaryBrush}"
+            Style="{StaticResource CaptionTextBlockStyle}"
+            TextAlignment="Center" />
+    </Grid>
+</Page>
