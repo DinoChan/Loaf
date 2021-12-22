@@ -120,6 +120,14 @@
   <data name="App.Text" xml:space="preserve">
     <value>App</value>
   </data>
+  <data name="AppDescription" xml:space="preserve">
+    <value>Loaf - a WinUI3 App</value>
+    <comment>Application description</comment>
+  </data>
+  <data name="AppDisplayName" xml:space="preserve">
+    <value>Loaf - a WinUI3 App</value>
+    <comment>Application display name</comment>
+  </data>
   <data name="IssuesLine1.Text" xml:space="preserve">
     <value>Known issue 1: Can't handle multiple screens.</value>
   </data>

@@ -21,7 +21,7 @@ using Windows.Foundation.Collections;
 
 namespace Loaf
 {
-    public sealed partial class MainView 
+    public sealed partial class MainView
     {
         public MainView()
         {
