@@ -120,6 +120,14 @@
   <data name="App.Text" xml:space="preserve">
     <value>App</value>
   </data>
+  <data name="AppDescription" xml:space="preserve">
+    <value>摸鱼</value>
+    <comment>Application description</comment>
+  </data>
+  <data name="AppDisplayName" xml:space="preserve">
+    <value>摸鱼</value>
+    <comment>Application display name</comment>
+  </data>
   <data name="IssuesLine1.Text" xml:space="preserve">
     <value>已知问题 1：不能应付多屏幕。</value>
   </data>

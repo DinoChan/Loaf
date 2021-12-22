@@ -26,7 +26,7 @@ namespace Loaf
         public MainWindow()
         {
             this.InitializeComponent();
-            SubClassing();
+
             Instance = this;
             Root.Loaded += OnLoaded;
             Root.KeyDown += Root_KeyDown;
@@ -57,6 +57,7 @@ namespace Loaf
             _appWindow = GetAppWindowForCurrentWindow();
 
             _appWindow.Title = "WinUI ❤️ " + ResourceExtensions.GetLocalized("Loaf");
+            SubClassing();
         }
 
         private AppWindow _appWindow;
@@ -119,6 +120,9 @@ namespace Loaf
         [DllImport("user32")]
         private static extern IntPtr SetWindowLongPtr(IntPtr hWnd, PInvoke.User32.WindowLongIndexFlags nIndex, WinProc newProc);
 
+        [DllImport("user32")]
+        private static extern IntPtr SetWindowLongW(IntPtr hWnd, PInvoke.User32.WindowLongIndexFlags nIndex, WinProc newProc);
+
         [DllImport("user32.dll", EntryPoint = "ShowWindow")]
         public static extern int ShowWindow(IntPtr hwnd, int nCmdShow);
 
@@ -142,7 +146,10 @@ namespace Loaf
         {
             var windowHandle = WindowNative.GetWindowHandle(this);
             _newWndProc = new WinProc(NewWindowProc);
-            _oldWndProc = SetWindowLongPtr(windowHandle, PInvoke.User32.WindowLongIndexFlags.GWL_WNDPROC, _newWndProc);
+            if (Environment.Is64BitProcess)
+                _oldWndProc = SetWindowLongPtr(windowHandle, PInvoke.User32.WindowLongIndexFlags.GWL_WNDPROC, _newWndProc);
+            else
+                _oldWndProc = SetWindowLongW(windowHandle, PInvoke.User32.WindowLongIndexFlags.GWL_WNDPROC, _newWndProc);
         }
 
         private IntPtr NewWindowProc(IntPtr hWnd, PInvoke.User32.WindowMessage msg, IntPtr wParam, IntPtr lParam)
