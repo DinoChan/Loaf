@@ -26,7 +26,9 @@ namespace Loaf
         public MainWindow()
         {
             this.InitializeComponent();
-
+            _appWindow = GetAppWindowForCurrentWindow();
+            _appWindow.SetPresenter(AppWindowPresenterKind.FullScreen);
+            _appWindow.SetPresenter(AppWindowPresenterKind.Default);
             Instance = this;
             Root.Loaded += OnLoaded;
             Root.KeyDown += Root_KeyDown;
@@ -47,7 +49,7 @@ namespace Loaf
             if (_isLoafing && e.Key == Windows.System.VirtualKey.Escape)
             {
                 Frame.GoBack();
-                Unload();
+                Unloaf();
             }
         }
 
@@ -79,6 +81,7 @@ namespace Loaf
             Frame.Navigate(typeof(Windows11UpdateView));
 
             _appWindow.SetPresenter(AppWindowPresenterKind.FullScreen);
+           
             while (ShowCursor(true) < 0)
             {
                 ShowCursor(true); //显示光标
@@ -92,7 +95,7 @@ namespace Loaf
             _isLoafing = true;
         }
 
-        public void Unload()
+        public void Unloaf()
         {
             _isLoafing = false;
             _appWindow.SetPresenter(AppWindowPresenterKind.Default);
