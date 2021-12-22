@@ -7,6 +7,7 @@ using Microsoft.UI.Xaml.Media;
 using System;
 using System.Runtime.InteropServices;
 using WinRT.Interop;
+using static PInvoke.User32;
 // To learn more about WinUI, the WinUI project structure,
 // and more about our project templates, see: http://aka.ms/winui-project-info.
 
@@ -115,6 +116,8 @@ namespace Loaf
             }
             // 恢复此线程曾经阻止的系统休眠和屏幕关闭。
             SystemSleep.RestoreForCurrentThread();
+
+            HideAllWindows();
         }
 
         [DllImport("user32", EntryPoint = "ShowCursor")]
@@ -131,6 +134,9 @@ namespace Loaf
 
         [DllImport("user32.dll")]
         internal static extern IntPtr CallWindowProc(IntPtr lpPrevWndFunc, IntPtr hWnd, PInvoke.User32.WindowMessage msg, IntPtr wParam, IntPtr lParam);
+
+        [DllImport("user32")]
+        public static extern uint SendInput(uint nInputs, INPUT[] pInputs, int cbSize);
 
         private AppWindow GetAppWindowForCurrentWindow()
         {
@@ -176,6 +182,36 @@ namespace Loaf
         {
             var dpi = PInvoke.User32.GetDpiForWindow(windowHandle);
             return Convert.ToInt32(pixel * (dpi / 96.0));
+        }
+
+        /// <summary>
+        ///     发送 Win + D，最小化所有窗口
+        /// </summary>
+        private void HideAllWindows()
+        {
+            INPUT[] inDow = new INPUT[4];
+            int i = 0;
+
+            while (i < inDow.Length)
+            {
+                inDow[i] = new INPUT();
+                inDow[i++].type = InputType.INPUT_KEYBOARD;
+            }
+
+            INPUT[] inDown = new INPUT[4];
+
+            inDown[0] = new INPUT();
+            inDown[1] = new INPUT();
+            inDown[2] = new INPUT();
+            inDown[3] = new INPUT();
+
+            inDown[0].type = inDown[1].type = inDown[2].type = inDown[3].type = InputType.INPUT_KEYBOARD;
+            inDown[0].Inputs.ki.wVk = inDown[2].Inputs.ki.wVk = VirtualKey.VK_LWIN;
+            inDown[1].Inputs.ki.wVk = inDown[3].Inputs.ki.wVk = VirtualKey.VK_D;
+
+            inDown[2].Inputs.ki.dwFlags = inDown[3].Inputs.ki.dwFlags = KEYEVENTF.KEYEVENTF_KEYUP;
+
+            SendInput(4, inDown, Marshal.SizeOf(inDown[0]));
         }
     }
 }
