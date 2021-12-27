@@ -80,8 +80,9 @@ namespace Loaf
             }
             Frame.Navigate(typeof(Windows11UpdateView));
 
+
             _appWindow.SetPresenter(AppWindowPresenterKind.FullScreen);
-           
+            ScreenHelper.SetScreenMode(1);
             while (ShowCursor(true) < 0)
             {
                 ShowCursor(true); //显示光标
@@ -99,6 +100,7 @@ namespace Loaf
         {
             _isLoafing = false;
             _appWindow.SetPresenter(AppWindowPresenterKind.Default);
+            ScreenHelper.SetScreenMode(2);
             var parent = VisualTreeHelper.GetParent(Root);
             while (parent != null)
             {
