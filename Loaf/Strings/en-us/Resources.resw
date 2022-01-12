@@ -159,7 +159,7 @@
     <value>attention please</value>
   </data>
   <data name="RestartHint.Text" xml:space="preserve">
-    <value>Your PC will restart serveral times</value>
+    <value>Your PC will restart several times</value>
   </data>
   <data name="ThisIsA.Text" xml:space="preserve">
     <value>This is a</value>
