@@ -1,32 +1,21 @@
 ﻿using Microsoft.UI.Xaml;
-using Microsoft.UI.Xaml.Controls;
-using Microsoft.UI.Xaml.Controls.Primitives;
-using Microsoft.UI.Xaml.Data;
 using Microsoft.UI.Xaml.Input;
 using Microsoft.UI.Xaml.Media;
-using Microsoft.UI.Xaml.Navigation;
 using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Linq;
-using System.Runtime.InteropServices.WindowsRuntime;
 using System.Threading.Tasks;
-using Windows.Foundation;
-using Windows.Foundation.Collections;
 using Windows.UI;
-
-// To learn more about WinUI, the WinUI project structure,
-// and more about our project templates, see: http://aka.ms/winui-project-info.
+using Windows.UI.Core;
 
 namespace Loaf
 {
     public sealed partial class Windows11UpdateView
     {
         private bool _disposed = false;
-
+        private readonly HookManager hookManager;
         public Windows11UpdateView()
         {
             this.InitializeComponent();
+            hookManager = new HookManager();
             Loaded += Windows11UpdateView_Loaded;
             Unloaded += Windows11UpdateView_Unloaded;
             this.KeyDown += Windows11UpdateView_KeyDown;
@@ -39,28 +28,37 @@ namespace Loaf
         {
             this.Focus(FocusState.Keyboard);
         }
-
-        private void Windows11UpdateView_PointerPressed(object sender, PointerRoutedEventArgs e)
-        {
-
-        }
-
         private void Windows11UpdateView_KeyDown(object sender, KeyRoutedEventArgs e)
         {
 
         }
-
         private void Windows11UpdateView_Unloaded(object sender, RoutedEventArgs e)
         {
+            SetCursor(true);
             _disposed = true;
         }
-
+        private CoreCursor Cursor;
+        private void SetCursor(bool show)
+        {
+            if (!show)
+            {
+                hookManager.HookStart();
+                Cursor = Window.Current.CoreWindow.PointerCursor;
+                Window.Current.CoreWindow.PointerCursor = null;
+            }
+            else
+            {
+                hookManager.HookStop();
+                Window.Current.CoreWindow.PointerCursor = Cursor;
+            }
+        }
         private async void Windows11UpdateView_Loaded(object sender, RoutedEventArgs e)
         {
+            SetCursor(false);
             int index = 0;
             while (_disposed == false)
             {
-                UpdatingElement.Text = String.Format(ResourceExtensions.GetLocalized("UpdatingText"), Math.Min(98, index++));
+                UpdatingElement.Text = string.Format(ResourceExtensions.GetLocalized("UpdatingText"), Math.Min(98, index++));
                 await Task.Delay(TimeSpan.FromSeconds(10));
             }
         }
