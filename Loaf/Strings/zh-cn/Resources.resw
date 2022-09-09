@@ -117,8 +117,22 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="AboutTitleBlock.Text" xml:space="preserve">
+    <value>关于</value>
+  </data>
   <data name="App.Text" xml:space="preserve">
     <value>App</value>
+  </data>
+  <data name="HomeDescriptionBlock.Text" xml:space="preserve">
+    <value>点击 “开始摸鱼” 按钮后应用会显示一个 Windows Update 画面，让你的老板以为你的电脑正在升级。
+这时候你就可以休息一下，优雅地喝一杯咖啡。
+不要有内疚感，适当的休息可以让你的大脑重新充满活力，能面对更多挑战，更高效地完成工作。</value>
+  </data>
+  <data name="HomeJokeBlock.Text" xml:space="preserve">
+    <value>其实这是一个玩笑</value>
+  </data>
+  <data name="HomeTitleBlock.Text" xml:space="preserve">
+    <value>这是一个摸鱼应用</value>
   </data>
   <data name="AppDescription" xml:space="preserve">
     <value>摸鱼</value>
@@ -129,67 +143,43 @@
     <comment>Application display name</comment>
   </data>
   <data name="IssuesLine1.Text" xml:space="preserve">
-    <value>已知问题 1：不能应付多屏幕。</value>
+    <value>Q：不能应付多屏幕。</value>
   </data>
   <data name="IssuesLine2.Text" xml:space="preserve">
-    <value>解决方法：关闭多余的显示器，让它们也休息一下。</value>
+    <value>A：关闭多余的显示器，让它们也休息一下。</value>
   </data>
   <data name="IssuesLine3.Text" xml:space="preserve">
-    <value>已知问题 2：不能隐藏鼠标指针。</value>
+    <value>Q：不能隐藏鼠标指针。</value>
   </data>
   <data name="IssuesLine4.Text" xml:space="preserve">
-    <value>解决方法：将鼠标移动到屏幕的右边或下面，躲起来。</value>
+    <value>A：将鼠标移动到屏幕的右边或下面，躲起来。</value>
+  </data>
+  <data name="KnownIssueDescription.Text" xml:space="preserve">
+    <value>当前应用的已知问题</value>
+  </data>
+  <data name="KnowsIssueTitle.Text" xml:space="preserve">
+    <value>已知问题</value>
   </data>
   <data name="Loaf" xml:space="preserve">
-    <value>摸鱼</value>
-  </data>
-  <data name="LoafButton.Content" xml:space="preserve">
     <value>摸鱼</value>
   </data>
   <data name="LoafElement.Text" xml:space="preserve">
     <value>摸鱼</value>
   </data>
-  <data name="LoafTeachingTip.CloseButtonContent" xml:space="preserve">
-    <value>开始摸鱼</value>
-  </data>
-  <data name="LoafTeachingTip.Content" xml:space="preserve">
-    <value>即将进入全屏，可以按 Esc 键退出。</value>
-  </data>
-  <data name="LoafTeachingTip.Title" xml:space="preserve">
-    <value>请注意</value>
+  <data name="LoafingTipBlock.Text" xml:space="preserve">
+    <value>点击进入全屏，可以按 Esc 键退出</value>
   </data>
   <data name="RestartHint.Text" xml:space="preserve">
     <value>计算机可能会重启几次</value>
   </data>
-  <data name="ThisIsA.Text" xml:space="preserve">
-    <value>这是一个</value>
+  <data name="SettingsButton.[using:Microsoft.UI.Xaml.Controls]ToolTipService.ToolTip" xml:space="preserve">
+    <value>关于与设置</value>
   </data>
-  <data name="Tips1Run.Text" xml:space="preserve">
-    <value>其实这是一个玩笑。</value>
+  <data name="StarProjectElement.Text" xml:space="preserve">
+    <value>给个好评</value>
   </data>
-  <data name="Tips2Part1.Text" xml:space="preserve">
-    <value>点击</value>
-  </data>
-  <data name="Tips2Part2.Text" xml:space="preserve">
-    <value>摸鱼</value>
-  </data>
-  <data name="Tips2Part3.Text" xml:space="preserve">
-    <value>按钮后应用会显示一个 Windows Update 画面，让你的老板以为你的电脑正在升级。</value>
-  </data>
-  <data name="Tips3Run.Text" xml:space="preserve">
-    <value>这时候你就可以休息一下，优雅地喝一杯咖啡。</value>
-  </data>
-  <data name="Tips4Run.Text" xml:space="preserve">
-    <value>不要有内疚感，适当的休息可以让你的大脑重新充满活力，能面对更多挑战，更高效地完成工作。</value>
-  </data>
-  <data name="Tips5Part1.Text" xml:space="preserve">
-    <value>所以放心大胆地使用</value>
-  </data>
-  <data name="Tips5Part2.Text" xml:space="preserve">
-    <value>摸鱼</value>
-  </data>
-  <data name="Tips5Part3.Text" xml:space="preserve">
-    <value>吧。</value>
+  <data name="StartLoafingButton.Content" xml:space="preserve">
+    <value>开始摸鱼</value>
   </data>
   <data name="UpdatingHint.Text" xml:space="preserve">
     <value>请保持计算机打开状态。</value>

@@ -10,9 +10,17 @@
     <UseWinUI>true</UseWinUI>
   </PropertyGroup>
   <ItemGroup>
-    <None Remove="MainView.xaml" />
-    <None Remove="Strings\en-US\Resources.resw" />
-    <None Remove="Strings\zh-Cn\Resources.resw" />
+    <None Remove="Assets\BadgeLogo.scale-100.png" />
+    <None Remove="Assets\BadgeLogo.scale-125.png" />
+    <None Remove="Assets\BadgeLogo.scale-150.png" />
+    <None Remove="Assets\BadgeLogo.scale-200.png" />
+    <None Remove="Assets\BadgeLogo.scale-400.png" />
+    <None Remove="Assets\logo.jpg" />
+    <None Remove="Assets\relaxing_dark.png" />
+    <None Remove="Assets\relaxing_light.png" />
+    <None Remove="Controls\AppTitleBar.xaml" />
+    <None Remove="HomeView.xaml" />
+    <None Remove="SettingsView.xaml" />
     <None Remove="Windows11UpdateView.xaml" />
   </ItemGroup>
 
@@ -30,13 +38,23 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Page Update="Windows11UpdateView.xaml">
+    <Page Update="SettingsView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+  </ItemGroup>
+  <ItemGroup>
+    <Page Update="HomeView.xaml">
       <Generator>MSBuild:Compile</Generator>
     </Page>
   </ItemGroup>
 
   <ItemGroup>
     <Page Update="MainView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+  </ItemGroup>
+  <ItemGroup>
+    <Page Update="Controls\AppTitleBar.xaml">
       <Generator>MSBuild:Compile</Generator>
     </Page>
   </ItemGroup>
