@@ -1,0 +1,110 @@
+﻿<Page
+    x:Class="Loaf.HomeView"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:local="using:Loaf"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d">
+
+    <Grid Padding="28,16" RowSpacing="8">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
+
+        <Grid>
+            <TextBlock
+                x:Uid="HomeTitleBlock"
+                HorizontalAlignment="Center"
+                Style="{StaticResource TitleTextBlockStyle}"
+                TextAlignment="Center" />
+            <Button
+                x:Name="SettingsButton"
+                x:Uid="SettingsButton"
+                Width="32"
+                Height="32"
+                Padding="0"
+                HorizontalAlignment="Right"
+                VerticalAlignment="Center"
+                Content="&#xE115;"
+                FontFamily="{StaticResource SymbolThemeFontFamily}"
+                Click="OnSettingsButtonClick"/>
+        </Grid>
+
+        <TextBlock
+            x:Uid="HomeJokeBlock"
+            Grid.Row="1"
+            HorizontalAlignment="Center"
+            Foreground="{ThemeResource TextFillColorSecondaryBrush}"
+            Style="{StaticResource CaptionTextBlockStyle}"
+            TextAlignment="Center" />
+
+        <HyperlinkButton
+            x:Name="StarProjectButton"
+            Grid.Row="2"
+            HorizontalAlignment="Center"
+            Canvas.ZIndex="1"
+            Click="OnStarProjectButtonClickAsync">
+            <StackPanel Orientation="Horizontal" Spacing="8">
+                <FontIcon
+                    VerticalAlignment="Center"
+                    FontFamily="{StaticResource SymbolThemeFontFamily}"
+                    FontSize="14"
+                    Glyph="&#xE1CF;" />
+                <TextBlock x:Uid="StarProjectElement" VerticalAlignment="Center" />
+            </StackPanel>
+        </HyperlinkButton>
+
+        <Image
+            Grid.Row="3"
+            Width="400"
+            Margin="0,-20"
+            HorizontalAlignment="Center"
+            Source="{ThemeResource HomeImage}" />
+
+        <TextBlock
+            x:Uid="HomeDescriptionBlock"
+            Grid.Row="4"
+            MaxWidth="420"
+            HorizontalAlignment="Center"
+            Foreground="{ThemeResource TextFillColorSecondaryBrush}"
+            LineHeight="20"
+            Style="{StaticResource CaptionTextBlockStyle}"
+            TextAlignment="Left" />
+
+        <StackPanel
+            Grid.Row="5"
+            Margin="0,28,0,0"
+            HorizontalAlignment="Center"
+            Spacing="12">
+            <Button
+                x:Name="StartLoafingButton"
+                x:Uid="StartLoafingButton"
+                Width="200"
+                Height="64"
+                Click="OnStartLoafingButtonClick"
+                FontSize="20"
+                FontWeight="Bold"
+                Style="{StaticResource AccentButtonStyle}" />
+            <TextBlock
+                x:Uid="LoafingTipBlock"
+                HorizontalAlignment="Center"
+                Foreground="{ThemeResource TextFillColorSecondaryBrush}"
+                Style="{StaticResource CaptionTextBlockStyle}"
+                TextAlignment="Center" />
+        </StackPanel>
+
+        <HyperlinkButton
+            x:Name="GithubButton"
+            Grid.Row="6"
+            HorizontalAlignment="Center"
+            Content="Github"
+            NavigateUri="https://github.com/DinoChan/Loaf" />
+    </Grid>
+</Page>

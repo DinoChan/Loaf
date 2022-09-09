@@ -7,7 +7,6 @@ using Microsoft.UI.Xaml.Media;
 using System;
 using System.Runtime.InteropServices;
 using WinRT.Interop;
-using static PInvoke.User32;
 // To learn more about WinUI, the WinUI project structure,
 // and more about our project templates, see: http://aka.ms/winui-project-info.
 
@@ -21,8 +20,8 @@ namespace Loaf
         private bool _isLoafing;
         private WinProc _newWndProc = null;
         private IntPtr _oldWndProc = IntPtr.Zero;
-        private const int MIN_WINDOW_WIDTH = 1000;
-        private const int MIN_WINDOW_HEIGHT = 680;
+        private const int MIN_WINDOW_WIDTH = 612;
+        private const int MIN_WINDOW_HEIGHT = 740;
 
         public MainWindow()
         {
@@ -33,6 +32,7 @@ namespace Loaf
             Instance = this;
             Root.Loaded += OnLoaded;
             Root.KeyDown += Root_KeyDown;
+            Root.ActualThemeChanged += OnThemeChanged;
             Activated += MainWindow_Activated;
         }
 
@@ -56,12 +56,15 @@ namespace Loaf
 
         private void OnLoaded(object sender, RoutedEventArgs e)
         {
-            Frame.Navigate(typeof(MainView));
+            Frame.Navigate(typeof(HomeView));
             _appWindow = GetAppWindowForCurrentWindow();
 
             _appWindow.Title = "WinUI ❤️ " + ResourceExtensions.GetLocalized("Loaf");
             SubClassing();
         }
+
+        private void OnThemeChanged(FrameworkElement sender, object args)
+            => AppUtils.InitializeTitleBar(_appWindow.TitleBar);
 
         private AppWindow _appWindow;
         private delegate IntPtr WinProc(IntPtr hWnd, PInvoke.User32.WindowMessage msg, IntPtr wParam, IntPtr lParam);
@@ -69,6 +72,7 @@ namespace Loaf
         public void Loaf()
         {
             RestoreWindow();
+            AppTitleBar.Visibility = Visibility.Collapsed;
             var parent = VisualTreeHelper.GetParent(Root);
             while (parent != null)
             {
@@ -99,6 +103,7 @@ namespace Loaf
         public void Unloaf()
         {
             _isLoafing = false;
+            AppTitleBar.Visibility = Visibility.Visible;
             _appWindow.SetPresenter(AppWindowPresenterKind.Default);
             var parent = VisualTreeHelper.GetParent(Root);
             while (parent != null)
@@ -168,8 +173,8 @@ namespace Loaf
                 case PInvoke.User32.WindowMessage.WM_GETMINMAXINFO:
                     {
                         var minMaxInfo = Marshal.PtrToStructure<PInvoke.User32.MINMAXINFO>(lParam);
-                        minMaxInfo.ptMinTrackSize.x = GetActualPixel(MIN_WINDOW_WIDTH, hWnd);
-                        minMaxInfo.ptMinTrackSize.y = GetActualPixel(MIN_WINDOW_HEIGHT, hWnd);
+                        minMaxInfo.ptMinTrackSize.x = AppUtils.GetScalePixel(MIN_WINDOW_WIDTH, hWnd);
+                        minMaxInfo.ptMinTrackSize.y = AppUtils.GetScalePixel(MIN_WINDOW_HEIGHT, hWnd);
                         Marshal.StructureToPtr(minMaxInfo, lParam, true);
                         break;
                     }
@@ -178,10 +183,12 @@ namespace Loaf
             return CallWindowProc(_oldWndProc, hWnd, msg, wParam, lParam);
         }
 
-        private static int GetActualPixel(double pixel, IntPtr windowHandle)
+        private void OnBackButtonClick(object sender, EventArgs e)
         {
-            var dpi = PInvoke.User32.GetDpiForWindow(windowHandle);
-            return Convert.ToInt32(pixel * (dpi / 96.0));
+            if (Frame.CanGoBack)
+            {
+                Frame.GoBack();
+            }
         }
 
         /// <summary>
