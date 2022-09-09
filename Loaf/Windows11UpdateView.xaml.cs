@@ -13,6 +13,7 @@ using System.Runtime.InteropServices.WindowsRuntime;
 using System.Threading.Tasks;
 using Windows.Foundation;
 using Windows.Foundation.Collections;
+using Windows.UI;
 
 // To learn more about WinUI, the WinUI project structure,
 // and more about our project templates, see: http://aka.ms/winui-project-info.
@@ -30,7 +31,8 @@ namespace Loaf
             Unloaded += Windows11UpdateView_Unloaded;
             this.KeyDown += Windows11UpdateView_KeyDown;
             this.PointerReleased += Windows11UpdateView_PointerReleased;
-
+            if (Environment.OSVersion.Version.Build < 22000)
+                Root.Background = new SolidColorBrush(Color.FromArgb(255, 0, 109, 174));
         }
 
         private void Windows11UpdateView_PointerReleased(object sender, PointerRoutedEventArgs e)
@@ -58,7 +60,7 @@ namespace Loaf
             int index = 0;
             while (_disposed == false)
             {
-                UpdatingElement.Text = String.Format(ResourceExtensions.GetLocalized("UpdatingText"), (index++) % 100);
+                UpdatingElement.Text = String.Format(ResourceExtensions.GetLocalized("UpdatingText"), Math.Min(98, index++));
                 await Task.Delay(TimeSpan.FromSeconds(10));
             }
         }

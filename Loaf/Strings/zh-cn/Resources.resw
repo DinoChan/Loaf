@@ -134,6 +134,14 @@
   <data name="HomeTitleBlock.Text" xml:space="preserve">
     <value>这是一个摸鱼应用</value>
   </data>
+  <data name="AppDescription" xml:space="preserve">
+    <value>摸鱼</value>
+    <comment>Application description</comment>
+  </data>
+  <data name="AppDisplayName" xml:space="preserve">
+    <value>摸鱼</value>
+    <comment>Application display name</comment>
+  </data>
   <data name="IssuesLine1.Text" xml:space="preserve">
     <value>Q：不能应付多屏幕。</value>
   </data>

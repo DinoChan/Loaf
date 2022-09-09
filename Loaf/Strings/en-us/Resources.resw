@@ -134,6 +134,14 @@ Don’t feel guilty. Taking a break will allow your brain to recharge for more c
   <data name="HomeTitleBlock.Text" xml:space="preserve">
     <value>This is a Loaf app</value>
   </data>
+  <data name="AppDescription" xml:space="preserve">
+    <value>Loaf - a WinUI3 App</value>
+    <comment>Application description</comment>
+  </data>
+  <data name="AppDisplayName" xml:space="preserve">
+    <value>Loaf - a WinUI3 App</value>
+    <comment>Application display name</comment>
+  </data>
   <data name="IssuesLine1.Text" xml:space="preserve">
     <value>Q: Can't handle multiple screens.</value>
   </data>
@@ -162,7 +170,7 @@ Don’t feel guilty. Taking a break will allow your brain to recharge for more c
     <value>Entering full screen, you can press Esc to exit</value>
   </data>
   <data name="RestartHint.Text" xml:space="preserve">
-    <value>Your PC will restart serveral times</value>
+    <value>Your PC will restart several times</value>
   </data>
   <data name="SettingsButton.[using:Microsoft.UI.Xaml.Controls]ToolTipService.ToolTip" xml:space="preserve">
     <value>About &amp; Settings</value>
