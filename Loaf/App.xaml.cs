@@ -1,4 +1,5 @@
-﻿using Microsoft.AppCenter;
+﻿using Loaf.Utils;
+using Microsoft.AppCenter;
 using Microsoft.AppCenter.Analytics;
 using Microsoft.AppCenter.Crashes;
 using Microsoft.UI;
@@ -7,6 +8,7 @@ using Microsoft.UI.Xaml;
 using System;
 using Windows.Graphics;
 using WinRT.Interop;
+using static PInvoke.User32;
 
 namespace Loaf
 {
@@ -45,22 +47,33 @@ namespace Loaf
             _appWindow = AppWindow.GetFromWindowId(windowId);
             _appWindow.Title = ResourceExtensions.GetLocalized("Loaf");
 
+            AppUtils.AppWindow = _appWindow;
+            AppUtils.MainWindowHandle = _windowHandle;
+
             // 在 Win10 中, AppWindow.TitleBar 始终为 null.
             if (_appWindow.TitleBar != null)
             {
                 AppUtils.InitializeTitleBar(_appWindow.TitleBar);
-                InitializeDragArea();
             }
 
             var preferWidth = AppUtils.GetScalePixel(612, _windowHandle);
             var preferHeight = AppUtils.GetScalePixel(740, _windowHandle);
             _appWindow.Resize(new SizeInt32(preferWidth, preferHeight));
+            CenterOnScreen(preferWidth, preferHeight);
         }
 
-        private void InitializeDragArea()
+        private void CenterOnScreen(int width, int height)
         {
-            var rect = new RectInt32(40, 0, AppUtils.GetScalePixel(_appWindow.Size.Width, _windowHandle), AppUtils.GetScalePixel(36, _windowHandle));
-            _appWindow.TitleBar.SetDragRectangles(new RectInt32[] { rect });
+            var hwndDesktop = MonitorFromWindow(_windowHandle, MonitorOptions.MONITOR_DEFAULTTONEAREST);
+            var info = new MONITORINFO();
+            info.cbSize = 40;
+            GetMonitorInfo(hwndDesktop, ref info);
+            
+            var cx = (info.rcMonitor.left + info.rcMonitor.right) / 2;
+            var cy = (info.rcMonitor.bottom + info.rcMonitor.top) / 2;
+            var left = cx - (width / 2);
+            var top = cy - (height / 2);
+            SetWindowPos(_windowHandle, SpecialWindowHandles.HWND_NOTOPMOST, left, top, width, height, SetWindowPosFlags.SWP_SHOWWINDOW);
         }
 
         private Window _window;
