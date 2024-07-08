@@ -56,3 +56,7 @@ The project is released under MIT License.
 | App Center SDK   | <https://github.com/microsoft/appcenter-sdk-dotnet> |
 | Windows UI Library        | <https://github.com/microsoft/microsoft-ui-xaml> |
 | Windows App SDK       | <https://github.com/microsoft/windowsappsdk> |
+
+## Star History
+
+[![Star History Chart](https://api.star-history.com/svg?repos=DinoChan/Loaf&type=Date)](https://star-history.com/#DinoChan/Loaf&Date)
